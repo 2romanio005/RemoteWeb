@@ -30,8 +30,10 @@ const schema = Yup.object().shape({
 
     first_password: Yup.string()
     .required("-Длина пароля должна быть не меньше 8 символов\n")
-    .min(8, "-Длина пароля должна быть не меньше 8 символов\n")
-    //.oneOf(["sss"], "-Пароли не совпадают\n"),
+    .min(8, "-Длина пароля должна быть не меньше 8 символов\n"),
+
+    seccond_password: Yup.string()
+    .oneOf([Yup.ref("first_password"), null], "-Пароли не совпадают\n"),
 });
 
 async function onSubmit(values: any) {
